@@ -1,0 +1,24 @@
+<div *ngIf="allItems.length > 0" style="margin-top : 40px;">
+  <div class="row">
+    <div class="col-md-3" *ngFor="let item of modAllItems">
+      <div>
+          <div class="card text-white mb-3" [ngClass]="setMyClasses(item)">
+              <div class="card-header">{{getItemType(item)}}</div>
+              <div class="card-body text-center">
+                <h5 class="card-title">{{item.name ? item.name : item.aliases[0]}}</h5>
+                <span *ngIf="getItemType(item) == 'Book'">
+                  <a [routerLink]="['/Book',getItemId(item)]" class="btn btn-secondary btn-sm">More</a>
+                </span>
+                <span *ngIf="getItemType(item) == 'Character'">
+                  <a [routerLink]="['/Character',getItemId(item)]" class="btn btn-secondary btn-sm">More</a>
+                </span>
+                <span *ngIf="getItemType(item) == 'House'">
+                  <a [routerLink]="['/House',getItemId(item)]" class="btn btn-secondary btn-sm">More</a>
+                </span>
+              </div>
+            </div>
+      </div>
+      
+    </div>
+  </div>
+</div>

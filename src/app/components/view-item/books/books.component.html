@@ -1,0 +1,56 @@
+<div *ngIf="item">
+  <div class="row text-center">
+    <div class="col-12">
+      <h1>{{item.name}}</h1>
+    </div>
+  </div>
+  <div class="row text-center" style="font-size : 1.3rem">
+    <div class="col-6">
+      <p>ISBN : {{item.isbn}}</p>
+    </div>
+    <div class="col-6">
+      <p>Author : {{item.authors[0]}}</p>
+    </div>
+  </div>
+  <div class="row text-center" style="font-size : 1.3rem">
+    <div class="col-6">
+      <p>Number of Pages : {{item.numberOfPages}}</p>
+    </div>
+    <div class="col-6">
+      <p>Publisher : {{item.publisher}}</p>
+    </div>
+  </div>
+  <div class="row text-center" style="font-size : 1.3rem">
+    <div class="col-6">
+      <p>Country : {{item.country}}</p>
+    </div>
+    <div class="col-6">
+      <p>Released : {{item.released | date}}</p>
+    </div>
+  </div>
+  <div class="row text-center" style="font-size : 1.3rem">
+    <div class="col-6">
+      <p>Characters :</p>
+      <div class="row showCharacters" style="height : 200px ; overflow: auto;">
+            <div class="col-3" *ngFor="let character of item.characters">
+              <a class="btn btn-secondary btn-sm" 
+                 [routerLink] = "['/Character', getCharId(character)]">
+                 Id : {{getCharId(character)}}
+              </a>
+            </div>
+          </div>
+    </div>
+    <div class="col-6">
+      <p>PovCharacters :</p>
+      <div class="row showCharacters" style="height : 200px ; overflow: auto;">
+              <div class="col-3" *ngFor="let character of item.povCharacters">
+                <a class="btn btn-secondary btn-sm" 
+                [routerLink] = "['/Character', getCharId(character)]">
+                   Id : {{getCharId(character)}}
+                </a>
+              </div>
+            </div>
+    </div>
+  </div>
+
+</div>

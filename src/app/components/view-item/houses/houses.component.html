@@ -1,0 +1,97 @@
+<div *ngIf="item">
+  <div class="row text-center">
+    <div class="col-12">
+      <h1>{{item.name ? item.name : "Not Known"}}</h1>
+    </div>
+  </div>
+  <div class="row text-center" style="font-size : 1.3rem">
+    <div class="col-6">
+      <p>Region : {{item.region ? item.region : "Not Known"}}</p>
+    </div>
+    <div class="col-6">
+      <p>Coat of Arms : {{item.coatOfArms ? item.coatOfArms : "Not Known"}}</p>
+    </div>
+  </div>
+  <div class="row text-center" style="font-size : 1.3rem">
+    <div class="col-6">
+      <p>Words: {{item.words ? item.words : "Not Known"}}</p>
+    </div>
+    <div class="col-6">
+      Titles :
+      <div *ngIf="item.titles[0]">
+        <span *ngFor="let title of item.titles">
+          {{title}}
+        </span>
+      </div>
+      <span *ngIf="!item.titles[0]">
+        Not Known
+      </span>
+    </div>
+  </div>
+  <div class="row text-center" style="font-size : 1.3rem">
+    <div class="col-6">
+      <div>
+        <p>Seats :
+          <span *ngIf="item.seats[0]">
+            <span *ngFor="let seat of item.seats">
+              {{seat}}
+            </span>
+          </span>
+          <span *ngIf="!item.seats[0]">
+            Not Known
+          </span>
+        </p>
+      </div>
+    </div>
+    <div class="col-6">
+      <p>Current Lord :
+          <a class="btn btn-secondary btn-sm" 
+          *ngIf = "item.currentLord"
+          [routerLink] = "['/Character', getCharId(item.currentLord)]">
+             Id : {{getCharId(item.currentLord)}}
+          </a>
+         <span *ngIf="!item.currentLord">
+          "Not Found"
+         </span>
+      </p>
+    </div>
+  </div>
+  <div class="row text-center" style="font-size : 1.3rem">
+    <div class="col-6">
+      <p>Heir : 
+          <a class="btn btn-secondary btn-sm" 
+          *ngIf = "item.heir"
+          [routerLink] = "['/Character', getCharId(item.heir)]">
+             Id : {{getCharId(item.heir)}}
+          </a>
+         <span *ngIf="!item.heir">
+          "Not Found"
+         </span>
+      </p>
+    </div>
+    <div class="col-6">
+      Overlord :  
+      <a class="btn btn-secondary btn-sm"
+         [routerLink]="['/House', getHouseId(item.overlord)]" >
+        Id : {{item.overlord ? getHouseId(item.overlord) : "Not Known"}}
+    </a>
+    </div>
+  </div>
+  <div class="row text-center" style="font-size : 1.3rem">
+    <div class="col-6">
+      <p>Founded : {{item.founded ? item.founded : "Not Known"}}</p>
+    </div>
+    <div class="col-6">
+      <p>Founder :
+          <a class="btn btn-secondary btn-sm" 
+          *ngIf = "item.founder"
+          [routerLink] = "['/Character', getCharId(item.founder)]">
+             Id : {{getCharId(item.founder)}}
+          </a>
+         <span *ngIf="!item.founder">
+          "Not Found"
+         </span>
+      </p>
+    </div>
+  </div>
+</div>

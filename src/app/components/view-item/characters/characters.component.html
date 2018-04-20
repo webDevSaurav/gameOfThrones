@@ -1,0 +1,105 @@
+<div *ngIf="item" style="font-size : 1.3rem">
+  <div class="row text-center">
+    <div class="col-12">
+      <h1>
+        <ng-container *ngIf="item.name; else elseTemplate1">
+          {{item.name}}
+        </ng-container>
+        <ng-template #elseTemplate1>
+          {{item.aliases[0]}}
+        </ng-template>
+      </h1>
+    </div>
+  </div>
+  <div class="row text-center">
+    <div class="col-6">
+      Culture : {{item.culture ? item.culture : "Not known" }}
+    </div>
+    <div class="col-6">
+      Born : {{item.born ? item.born : "Not known"}}
+    </div>
+  </div>
+  <div class="row text-center">
+    <div class="col-6">
+      Died : {{item.died ? item.died : "Not known"}}
+    </div>
+    <div class="col-6">
+      <span>
+        Spouse :
+        <ng-container *ngIf="item.spouse; else elseTemplate3">
+          <a class="btn btn-secondary btn-sm" 
+          [routerLink]="['/Character',getCharId(item.spouse)]">
+            Id : {{getCharId(item.spouse)}}
+          </a>
+        </ng-container>
+        <ng-template #elseTemplate3>
+          Not Known
+        </ng-template>
+      </span>
+    </div>
+  </div>
+  <div class="row text-center">
+    <div class="col-6">
+      Titles :
+      <ng-container *ngIf="item.titles[0] ; else elseTemplate2">
+        <span *ngFor="let title of item.titles; let last = last">{{!last ? title + ", " : title}}</span>
+      </ng-container>
+      <ng-template #elseTemplate2>
+        No Titles
+      </ng-template>
+    </div>
+    <div class="col-6">
+      TV Series :
+      <span *ngIf="item.tvSeries[0] ; else elseTemplate4">
+        <span *ngFor="let item of item.tvSeries; let last = last">{{!last ? item + ", " : item}}</span>
+      </span>
+      <ng-template #elseTemplate4>
+        No Series
+      </ng-template>
+    </div>
+  </div>
+  <div class="row text-center">
+    <div class="col-6">
+      Gender : {{item.gender}}
+    </div>
+    <div class="col-6">
+      Played By :
+      <span *ngIf="item.playedBy[0] ; else elseTemplate5">
+        <span *ngFor="let item of item.playedBy; let last = last">{{!last ? item + ", " : item}}</span>
+      </span>
+      <ng-template #elseTemplate5>
+          None
+        </ng-template>
+    </div>
+  </div>
+  <div class="row text-center">
+    <div class="col-6">
+        <span>
+            Father :
+            <ng-container *ngIf="item.father; else elseTemplate4">
+              <a class="btn btn-secondary btn-sm" 
+              [routerLink]="['/Character',getCharId(item.father)]">
+                Id : {{getCharId(item.father)}}
+              </a>
+            </ng-container>
+            <ng-template #elseTemplate4>
+              Not Known
+            </ng-template>
+          </span>
+    </div>
+    <div class="col-6">
+        <span>
+            Mother :
+            <ng-container *ngIf="item.mother; else elseTemplate5">
+              <a class="btn btn-secondary btn-sm" 
+              [routerLink]="['/Character',getCharId(item.mother)]">
+                Id : {{getCharId(item.mother)}}
+              </a>
+            </ng-container>
+            <ng-template #elseTemplate5>
+              Not Known
+            </ng-template>
+          </span>
+    </div>
+  </div>
+</div>
